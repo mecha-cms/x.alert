@@ -49,9 +49,7 @@ final class Alert extends Genome implements \Countable, \IteratorAggregate, \Jso
     }
 
     public static function get($kin = null, $clear = true) {
-        if (!isset(self::$alert)) {
-            self::$alert = $_SESSION['alert'] ?? [];
-        }
+        self::$alert = array_replace(self::$alert ?? [], $_SESSION['alert'] ?? []);
         if (is_array($kin)) {
             $out = [];
             foreach ($kin as $v) {
@@ -71,7 +69,7 @@ final class Alert extends Genome implements \Countable, \IteratorAggregate, \Jso
             }
             return $out;
         }
-        if (isset(self::$alert)) {
+        if (!empty(self::$alert)) {
             $out = [];
             foreach ((array) self::$alert as $k => $v) {
                 $out = array_merge($out, self::i($v, $k));

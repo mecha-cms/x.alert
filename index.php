@@ -4,7 +4,7 @@
 // so the auto-loader feature will not provide any benefit. By loading this function immediately, it will prevent the
 // appearance of error message(s) such as that `alert` function is not (yet) defined.
 function alert(...$lot) {
-    return count($lot) < 2 ? Alert::get(...$lot) : Alert::set(...$lot);
+    return count($lot) < 2 ? ((array) Alert::get(...$lot)) : Alert::set(...$lot);
 }
 
 // Set default alert layout if `.\lot\y\*\alert.php` file does not exist.
