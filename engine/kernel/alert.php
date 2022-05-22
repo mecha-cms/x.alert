@@ -20,7 +20,7 @@ final class Alert extends Genome implements \Countable, \IteratorAggregate, \Jso
         if ($alert = self::get()) {
             $out = "";
             foreach ($alert as $v) {
-                $out .= new SGML($v);
+                $out .= new XML($v);
             }
             return $out;
         }
