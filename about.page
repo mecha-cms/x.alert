@@ -4,7 +4,7 @@ description: Display alert messages once.
 icon: 'M7,2V13H10V22L17,10H13L17,2H7Z'
 author: Taufik Nurrohman
 type: Markdown
-version: 2.0.0
+version: 2.0.1
 ...
 
 All methods except `get`, `let`, and `set` can be used. This class uses `__callStatic` method to generate dynamic types. Each given method will declare the alert type. The most common and recommended method names are `error`, `info`, and `success`, which can be used to represent [three-valued logic](https://en.wikipedia.org/wiki/Three-valued_logic) (`error` as `false`, `info` as `null`, and `success` as `true`).
