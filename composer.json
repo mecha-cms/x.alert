@@ -1,8 +1,5 @@
 {
   "description": "Display alert messages once.",
   "license": "GPL-3.0-or-later",
-  "name": "mecha-cms/x.alert",
-  "require": {
-    "mecha-cms/mecha": "*"
-  }
+  "name": "mecha-cms/x.alert"
 }
