@@ -30,9 +30,22 @@ To display the alert block in your layout, add this line at a specific point in 
 The built-in alert block doesn’t care about the type. Every alert created will be passed as a `<p role="alert">…</p>` element in the HTML output. To generate unique alert block for each type, you need to make your own HTML output in a `.\lot\y\*\alert.php` file:
 
 ~~~ .php
-<?php foreach (alert() as $v): ?>
+<?php foreach ((array) Alert::get() as $v): ?>
   <p class="alert alert-<?= $v[2]['type']; ?>" role="alert">
     <?= $v[1]; ?>
   </p>
 <?php endforeach; ?>
+~~~
+
+You can also use hooks to modify the HTML output. However, this hook will have no effect on the alert markup you manually created in the `.\lot\y\*\alert.php` file (unless you’re following how I form the alert markup in the `.\x\alert\engine\y\alert.php` file):
+
+~~~ .php
+Hook::set('y.alert', function($alert) {
+    $alert[0] = 'div';
+    foreach ($alert[1] as &$v) {
+        $v[2]['class'] = 'alert';
+    }
+    $alert[2]['class'] = 'alerts';
+    return $alert;
+});
 ~~~
