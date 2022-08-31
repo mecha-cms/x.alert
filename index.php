@@ -4,6 +4,8 @@ function alert($alert) {
     foreach ($alert[1] as &$v) {
         $v[0] = 'p';
         $v[2]['role'] = 'alert';
+        // This key will be ignored by `HTML` class but can be used on other hook(s) as a reference.
+        $v['type'] = $v[2]['type'];
         unset($v[2]['type']);
     }
     unset($v);
