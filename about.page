@@ -40,7 +40,7 @@ The built-in alert block doesn’t care about the type. Every alert created will
 You can also use hooks to modify the HTML output. However, this hook will have no effect on the alert markup you manually created in the `.\lot\y\*\alert.php` file (unless you’re following how I form the alert markup in the `.\x\alert\engine\y\alert.php` file):
 
 ~~~ .php
-Hook::set('y.alert', function($alert) {
+Hook::set('y.alert', function ($alert) {
     $alert[0] = 'div';
     foreach ($alert[1] as &$v) {
         $v[2]['class'] = 'alert';
