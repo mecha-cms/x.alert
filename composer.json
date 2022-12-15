@@ -1,5 +1,5 @@
 {
-  "description": "Display alert messages once.",
+  "description": "Flash messages.",
   "license": "GPL-3.0-or-later",
   "name": "mecha-cms/x.alert"
 }
