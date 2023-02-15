@@ -2,12 +2,18 @@
 title: Alert
 description: Flash messages.
 icon: 'M7,2V13H10V22L17,10H13L17,2H7Z'
+color: '#7579a0'
 author: Taufik Nurrohman
 type: Markdown
 version: 2.0.2
 ...
 
-All methods except `get`, `let`, and `set` can be used. This class uses `__callStatic` method to generate dynamic types. Each given method will declare the alert type. The most common and recommended method names are `error`, `info`, and `success`, which can be used to represent [three-valued logic](https://en.wikipedia.org/wiki/Three-valued_logic) (`error` as `false`, `info` as `null`, and `success` as `true`).
+All methods except `get`, `let`, and `set` can be used. This class uses `__callStatic()` method to generate dynamic
+types. Each given method will declare the alert type. The most common and recommended method names are `error`, `info`,
+and `success`, which can be used to represent [three-valued logic](https://en.wikipedia.org/wiki/Three-valued_logic)
+(`error` as `false`, `info` as `null`, and `success` as `true`).
+
+### Usage
 
 ~~~ .php
 Alert::error('This is an error message.');
@@ -15,19 +21,23 @@ Alert::info('This is an info message.');
 Alert::success('This is a success message.');
 ~~~
 
-It is possible to add parameters to your message like this:
+It is possible to add parameters to your message like this. All description data will be passed to the `i()` function
+internally so they will be easy to translate:
 
 ~~~ .php
 Alert::error('Please fill out the %s field!', ['name']); // “Please fill out the name field!”
 ~~~
 
-To display the alert block in your layout, add this line at a specific point in your layout file, for example, under the form’s opening tag:
+To display the alert block in your layout, add this line at a specific point in your layout file, for example, under the
+form’s opening tag:
 
 ~~~ .php
 <?= self::alert(); ?>
 ~~~
 
-The built-in alert block doesn’t care about the type. Every alert created will be passed as a `<p role="alert">…</p>` element in the HTML output. To generate unique alert block for each type, you need to make your own HTML output in a `.\lot\y\*\alert.php` file:
+The built-in alert block doesn’t care about the type. Every alert created will be passed as a `<p role="alert">…</p>`
+element in the HTML output. To generate unique alert block for each type, you need to make your own HTML output in a
+`.\lot\y\*\alert.php` file:
 
 ~~~ .php
 <?php foreach ((array) Alert::get() as $v): ?>
@@ -37,15 +47,17 @@ The built-in alert block doesn’t care about the type. Every alert created will
 <?php endforeach; ?>
 ~~~
 
-You can also use hooks to modify the HTML output. However, this hook will have no effect on the alert markup you manually created in the `.\lot\y\*\alert.php` file (unless you’re following how I form the alert markup in the `.\x\alert\engine\y\alert.php` file):
+You can also use hooks to modify the HTML output. However, this hook will have no effect on the alert markup you
+manually created in the `.\lot\y\*\alert.php` file (unless you’re following how I form the alert markup in the
+`.\x\alert\engine\y\alert.php` file):
 
 ~~~ .php
-Hook::set('y.alert', function ($alert) {
-    $alert[0] = 'div';
-    foreach ($alert[1] as &$v) {
+Hook::set('y.alert', function ($y) {
+    $y[0] = 'div';
+    foreach ($y[1] as &$v) {
         $v[2]['class'] = 'alert';
     }
-    $alert[2]['class'] = 'alerts';
-    return $alert;
+    $y[2]['class'] = 'alerts';
+    return $y;
 });
 ~~~
