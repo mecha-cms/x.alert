@@ -1,4 +1,4 @@
-<?php namespace x;
+<?php namespace x\alert\y;
 
 function alert($alert) {
     foreach ($alert[1] as &$v) {
