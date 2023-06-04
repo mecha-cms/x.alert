@@ -1,6 +1,6 @@
-<?php namespace x\alert\y;
+<?php namespace x\alert;
 
-function alert($alert) {
+function y__alert($alert) {
     foreach ($alert[1] as &$v) {
         $v[0] = 'p';
         $v[2]['role'] = 'alert';
@@ -12,7 +12,7 @@ function alert($alert) {
     return $alert;
 }
 
-\Hook::set('y.alert', __NAMESPACE__ . "\\alert", 2);
+\Hook::set('y.alert', __NAMESPACE__ . "\\y__alert", 2);
 
 // Set default alert layout if `.\lot\y\*\alert.php` file does not exist.
 if (\class_exists("\\Layout") && !\Layout::path('alert')) {
