@@ -37,7 +37,7 @@ after the form’s opening tag:
 
 Below is a basic example of how to place the alert block in your HTML form:
 
-~~~ .php
+~~~ .html.php
 <form method="post">
   <?= self::alert(); ?>
   <p>
@@ -55,7 +55,7 @@ The built-in alert block doesn’t care about the type. Any generated alert data
 `<p role="alert">…</p>` element in the HTML output. To generate a unique alert block for each type, you need to create
 your own HTML output in a `.\lot\y\*\alert.php` file:
 
-~~~ .php
+~~~ .html.php
 <?php foreach (Alert::get() as $v): ?>
   <p class="alert alert-<?= $v[2]['type']; ?>" role="alert">
     <?= $v[1]; ?>
