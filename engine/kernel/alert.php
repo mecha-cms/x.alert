@@ -2,7 +2,7 @@
 
 final class Alert extends Genome implements \Countable, \IteratorAggregate, \JsonSerializable {
 
-    public static $alert = null;
+    public static $alert = [];
 
     private static function i(array $lot, string $kin) {
         $out = [];
@@ -49,7 +49,7 @@ final class Alert extends Genome implements \Countable, \IteratorAggregate, \Jso
     }
 
     public static function get($kin = null, $clear = true) {
-        self::$alert = array_replace(self::$alert ?? [], $_SESSION['alert'] ?? []);
+        self::$alert = array_replace(self::$alert, $_SESSION['alert'] ?? []);
         if (is_array($kin)) {
             $out = [];
             foreach ($kin as $v) {
@@ -71,7 +71,7 @@ final class Alert extends Genome implements \Countable, \IteratorAggregate, \Jso
         }
         if (!empty(self::$alert)) {
             $out = [];
-            foreach ((array) self::$alert as $k => $v) {
+            foreach (self::$alert as $k => $v) {
                 $out = array_merge($out, self::i($v, $k));
                 if ($clear) {
                     unset($_SESSION['alert'][$k]);
@@ -79,7 +79,7 @@ final class Alert extends Genome implements \Countable, \IteratorAggregate, \Jso
             }
             return $out;
         }
-        return null;
+        return [];
     }
 
     public static function set(...$lot) {
@@ -95,7 +95,7 @@ final class Alert extends Genome implements \Countable, \IteratorAggregate, \Jso
         } else if (isset($kin)) {
             unset(self::$alert[$kin], $_SESSION['alert'][$kin]);
         } else {
-            self::$alert = null;
+            self::$alert = [];
             unset($_SESSION['alert']);
         }
     }

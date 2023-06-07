@@ -8,8 +8,8 @@ type: Markdown
 version: 2.0.2
 ...
 
-All methods except `get`, `let`, and `set` can be used. This class uses `__callStatic()` method to generate dynamic
-types. Each given method will declare the alert type. The most common and recommended method names are `error`, `info`,
+All methods except `get`, `let`, and `set` can be used. This class uses the `__callStatic()` method to create dynamic
+types. Any given method will declare the alert type. The most common and recommended method names are `error`, `info`,
 and `success`, which can be used to represent [three-valued logic](https://en.wikipedia.org/wiki/Three-valued_logic)
 (`error` as `false`, `info` as `null`, and `success` as `true`).
 
@@ -21,34 +21,50 @@ Alert::info('This is an info message.');
 Alert::success('This is a success message.');
 ~~~
 
-It is possible to add parameters to your message like this. All description data will be passed to the `i()` function
-internally so they will be easy to translate:
+It is possible to add parameters to your message like this. All description data is passed internally to the `i()`
+function, making it easy to translate:
 
 ~~~ .php
 Alert::error('Please fill out the %s field!', ['name']); // “Please fill out the name field!”
 ~~~
 
-To display the alert block in your layout, add this line at a specific point in your layout file, for example, under the
-form’s opening tag:
+To display the alert block in your layout, add this line at a specific point in your layout file, for example, just
+after the form’s opening tag:
 
 ~~~ .php
 <?= self::alert(); ?>
 ~~~
 
-The built-in alert block doesn’t care about the type. Every alert created will be passed as a `<p role="alert">…</p>`
-element in the HTML output. To generate unique alert block for each type, you need to make your own HTML output in a
-`.\lot\y\*\alert.php` file:
+Below is a basic example of how to place the alert block in your HTML form:
 
 ~~~ .php
-<?php foreach ((array) Alert::get() as $v): ?>
+<form method="post">
+  <?= self::alert(); ?>
+  <p>
+    <input name="query" type="search">
+  </p>
+  <p>
+    <button type="submit">
+      <?= i('Submit'); ?>
+    </button>
+  </p>
+</form>
+~~~
+
+The built-in alert block doesn’t care about the type. Any generated alert data will be returned as a
+`<p role="alert">…</p>` element in the HTML output. To generate a unique alert block for each type, you need to create
+your own HTML output in a `.\lot\y\*\alert.php` file:
+
+~~~ .php
+<?php foreach (Alert::get() as $v): ?>
   <p class="alert alert-<?= $v[2]['type']; ?>" role="alert">
     <?= $v[1]; ?>
   </p>
 <?php endforeach; ?>
 ~~~
 
-You can also use hooks to modify the HTML output. However, this hook will have no effect on the alert markup you
-manually created in the `.\lot\y\*\alert.php` file (unless you’re following how I form the alert markup in the
+You can also use a hook to modify the HTML output. However, this hook will have no effect on the alert markup you’ve
+manually created in the `.\lot\y\*\alert.php` file (unless you follow how I form the alert markup in the
 `.\x\alert\engine\y\alert.php` file):
 
 ~~~ .php
