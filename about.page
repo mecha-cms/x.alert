@@ -65,8 +65,7 @@ your own HTML output in a `.\lot\y\*\alert.php` file:
 ~~~
 
 You can also use a hook to modify the HTML output. However, this hook will have no effect on the alert markup you’ve
-manually created in the `.\lot\y\*\alert.php` file (unless you follow how I form the alert markup in the
-`.\x\alert\engine\y\alert.php` file):
+manually created in the `.\lot\y\*\alert.php` file:
 
 ~~~ .php
 Hook::set('y.alert', function ($y) {
