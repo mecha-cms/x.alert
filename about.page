@@ -5,7 +5,7 @@ icon: 'M7,2V13H10V22L17,10H13L17,2H7Z'
 color: '#7579a0'
 author: Taufik Nurrohman
 type: Markdown
-version: 2.0.2
+version: 3.0.0
 ...
 
 All methods except `get()`, `let()`, and `set()` can be used. This class uses the `__callStatic()` method to create

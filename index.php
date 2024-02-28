@@ -15,6 +15,8 @@ function y__alert($y) {
 \Hook::set('y.alert', __NAMESPACE__ . "\\y__alert", 2);
 
 // Set default alert layout if `.\lot\y\*\alert.php` file does not exist
-if (\class_exists("\\Layout") && !\Layout::path('alert')) {
-    \Layout::set('alert', __DIR__ . \D . 'engine' . \D . 'y' . \D . 'alert.php');
+if (\class_exists("\\Layout") && !\Layout::of('alert')) {
+    \Layout::set('alert', static function ($key, array $lot = []) {
+        return new \HTML(\Hook::fire('y.alert', [[false, \Alert::get(), []], $lot]), true);
+    });
 }
