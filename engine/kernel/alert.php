@@ -1,6 +1,6 @@
 <?php
 
-final class Alert extends Genome implements \Countable, \IteratorAggregate, \JsonSerializable {
+final class Alert extends Genome implements Countable, IteratorAggregate, JsonSerializable {
 
     public static $alert = [];
 
@@ -16,7 +16,7 @@ final class Alert extends Genome implements \Countable, \IteratorAggregate, \Jso
         return $out;
     }
 
-    public function __toString() {
+    public function __toString(): string {
         if ($alert = self::get()) {
             $out = "";
             foreach ($alert as $v) {
@@ -31,11 +31,10 @@ final class Alert extends Genome implements \Countable, \IteratorAggregate, \Jso
         return count((array) self::get(null, false));
     }
 
-    public function getIterator(): \Traversable {
-        return new \ArrayIterator(self::get(null, false) ?? []);
+    public function getIterator(): Traversable {
+        return new ArrayIterator(self::get(null, false) ?? []);
     }
 
-    #[\ReturnTypeWillChange]
     public function jsonSerialize() {
         return self::get(null, false);
     }
