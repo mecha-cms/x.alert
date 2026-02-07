@@ -5,7 +5,7 @@ icon: 'M7,2V13H10V22L17,10H13L17,2H7Z'
 color: '#7579a0'
 author: Taufik Nurrohman
 type: Markdown
-version: 3.0.0
+version: 4.0.0
 ...
 
 All methods except `get()`, `let()`, and `set()` can be used. This class uses the `__callStatic()` method to create
@@ -73,7 +73,7 @@ Hook::set('y.alert', function ($y) {
     foreach ($y[1] as &$v) {
         $v[2]['class'] = 'alert';
     }
-    $y[2]['class'] = 'alerts';
+    $y[2]['class'] = 'alert-set';
     return $y;
 });
 ~~~

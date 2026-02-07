@@ -1,6 +1,6 @@
 <?php
 
-final class Alert extends Genome implements Countable, IteratorAggregate, JsonSerializable {
+final class Alert extends Genome {
 
     public static $alert = [];
 
@@ -25,18 +25,6 @@ final class Alert extends Genome implements Countable, IteratorAggregate, JsonSe
             return $out;
         }
         return "";
-    }
-
-    public function count(): int {
-        return count((array) self::get(null, false));
-    }
-
-    public function getIterator(): Traversable {
-        return new ArrayIterator(self::get(null, false) ?? []);
-    }
-
-    public function jsonSerialize(): mixed {
-        return self::get(null, false);
     }
 
     public static function __callStatic(string $kin, array $lot = []) {
