@@ -1,6 +1,6 @@
 <?php
 
-final class Alert extends Genome {
+final class Alert extends Proxy {
 
     public static $alert = [];
 
